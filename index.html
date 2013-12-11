@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Painter</title>
+    
+    <meta name="author" content="XadillaX">
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="screen" type="text/css" href="css/colorpicker.css" />
+</head>
+<body>
+    <div class="container" style="margin-top: 40px;">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">图像</div>
+                        <div class="panel-body">
+                            <div class="btn-group btn-group-justified">
+                                <a id="save" type="button" class="btn btn-default">保存</a>
+                                <a id="clear" type="button" class="btn btn-default">清空</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">工具</div>
+                        <div class="panel-body">
+                            <div class="btn-group btn-group-justified toolset" data-toggle="buttons">
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="brush"> <img src="images/brush.png" width="16" />
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="eraser"> <img src="images/eraser.png" width="16" />
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="fill"> <img src="images/fill.png" width="16" />
+                                </label>
+                            </div>
+                            <div style="height: 10px;"></div>
+                            <div class="btn-group btn-group-justified toolset" data-toggle="buttons">
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="dropper"> <img src="images/getter.png" width="16" />
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="type"> <img src="images/type.png" width="16" />
+                                </label>
+                                <label class="btn btn-default" >
+                                    <input type="checkbox" id="magnifier"> <img src="images/magnifier.png" width="16" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">形状</div>
+                        <div class="panel-body" style="font-family: 宋体;">
+                            <div class="btn-group btn-group-justified shape" data-toggle="buttons">
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="line"> ─
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="round-empty"> ○
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="square-empty"> □
+                                </label>
+                            </div>
+                            <div style="height: 10px;"></div>
+                            <div class="btn-group btn-group-justified shape" data-toggle="buttons">
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="triangle-empty"> △
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="round"> ●
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" id="square"> ■
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">粗细</div>
+                        <div class="panel-body">
+                            <div class="btn-group btn-group-justified thickness" data-toggle="buttons">
+                                <label class="btn btn-default">
+                                    <input type="radio" name="thickness" id="tn1"> ▁
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="thickness" id="tn2"> ▂
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="thickness" id="tn3"> ▃
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="thickness" id="tn4"> ▄
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">颜色</div>
+                                <div class="panel-body">
+                                    <div class="btn-toolbar" role="toolbar">
+                                        <div class="btn-group">
+                                            <a id="currentColor" type="button" class="btn btn-default">　</a>
+                                        </div>
+                                        <div class="btn-group stored-color">
+                                            <a type="button" class="btn btn-default" style="background-color: #000;">　</a>
+                                            <a type="button" class="btn btn-default" style="background-color: #ff7800;">　</a>
+                                            <a type="button" class="btn btn-default" style="background-color: #ff0099;">　</a>
+                                            <a type="button" class="btn btn-default" style="background-color: #00b4ff;">　</a>
+                                            <a type="button" class="btn btn-default" style="background-color: #a2ff00;">　</a>
+                                            <a type="button" class="btn btn-default" style="background-color: #fff;">　</a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a type="button" id="other-color" class="btn btn-default">...</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">滤镜</div>
+                                <div class="panel-body">
+                                    <div class="btn-group filter btn-group-justified">
+                                        <a type="button" class="btn btn-default" value="lomo">Lomo</a>
+                                        <a type="button" class="btn btn-default" value="vintage">复古</a>
+                                        <a type="button" class="btn btn-default" value="warmAutumn">暖秋</a>
+                                        <a type="button" class="btn btn-default" value="carveStyle">木雕</a>
+                                        <a type="button" class="btn btn-default" value="rough">粗糙</a>
+                                        <a type="button" class="btn btn-default" value="soften">柔焦</a>
+                                        <a type="button" class="btn btn-default" value="sketch">素描</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-default" style="height: 449px; padding: 4px; overflow: auto;">
+                        <div id="painter-wrapper" style="width: 100%; height: 100%">
+                            <canvas id="canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="saveModalTitle">保存图片</h4>
+                </div>
+                <div class="modal-body">
+                    确定保存图片吗？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <a href="#" type="button" class="btn btn-primary" id="oksave">点我右键另存为</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/alloyimage-1.1.js"></script>
+    <script type="text/javascript" src="js/colorpicker.js"></script>
+
+    <script src="js/toolset/brush.js"></script>
+    <script src="js/toolset/eraser.js"></script>
+    <script src="js/toolset/fill.js"></script>
+    <script src="js/toolset/straw.js"></script>
+    <script src="js/toolset/type.js"></script>
+    <script src="js/toolset/magnifier.js"></script>
+
+    <script src="js/shape/line.js"></script>
+    <script src="js/shape/emptyRound.js"></script>
+    <script src="js/shape/emptySquare.js"></script>
+    <script src="js/shape/emptyTriangle.js"></script>
+    <script src="js/shape/round.js"></script>
+    <script src="js/shape/square.js"></script>
+
+    <script src="js/canvas.js"></script>
+    <script src="js/baseOperator.js"></script>
+    <script src="js/toolset.js"></script>
+    <script src="js/shape.js"></script>
+    <script src="js/thickness.js"></script>
+    <script src="js/ohcolor.js"></script>
+    <script src="js/filter.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
